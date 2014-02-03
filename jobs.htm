@@ -31,7 +31,51 @@
 		</div>
 		
 		<div class="content">
-			<script src="gpa.js"></script>
+			<script>
+				function calculateGPA(){
+					var grades = new Array();
+					
+					grades[0] = document.getElementById("3153").value; //it_3153
+					grades[1] = document.getElementById("3503").value; //it_3503
+					grades[2] = document.getElementById("4153").value; //it_4153
+					grades[3] = document.getElementById("3883").value; //it_3883
+					grades[4] = document.getElementById("4323").value; //it_4323
+
+					for(var i = 0; i<grades.length;i++){
+						if(grades[i] === 'A' || grades[i] === 'a'){
+							grades[i] = 4;
+						} else if(grades[i] === 'B' || grades[i] === 'b'){
+							grades[i] = 3;
+						} else if(grades[i] === 'C' || grades[i] === 'c'){
+							grades[i] = 2;
+						} else if(grades[i] === 'D' || grades[i] === 'd'){
+							grades[i] = 1;
+						} else {
+							grades[i] = 0;
+						}
+					}
+
+					var gpa = 0;
+					
+					for(var i = 0; i<grades.length;i++){
+						gpa+=grades[i];
+					}
+					
+					gpa /= 5;
+					
+					var div = document.getElementByID('content');
+	
+					if (gpa < 3.5){
+					//$("body").append("<p>We're sorry. Please try again next year!</p>");
+						var content = document.createTextNode("<p>We're sorry. Please try again next year!</p>");
+						div.appendChild(content);
+					} else {
+						//$("body").append("<p>Congratulations! Please send your resume to <a href=\"mailto:cwhite5@spsu.edu\">Curtis White</a></p>");
+						var content = document.createTextNode("<p>Congratulations! Please send your resume to <a href=\"mailto:cwhite5@spsu.edu\">Curtis White</a></p>");
+						div.appendChild(content);
+					}
+				}
+			</script>
 			<h2 align="center">For more information please fill out the form below and click submit</h2>
 			
 			<form action="">
@@ -45,8 +89,10 @@
 					<input type="text" name="lname" size="30" />
 				</label>
 				
+				<br />
+				
 				<label>Please Enter your grade for IT 3153:
-					<input type="text" id="3153" name="IT_3153" size="30" />
+					<input type="text" id="3153" name="IT_3153" size="5" />
 				</label>
 							
 				<br />
@@ -54,31 +100,31 @@
 				<br />
 							
 				<label>Please Enter your grade for IT 3503:
-					<input type="text" id="3503" name="IT_3503" size="10" />
+					<input type="text" id="3503" name="IT_3503" size="5" />
 				</label>
 							
 				<br />
 				
 				<label>Please Enter your grade for IT 4153:
-					<input type="text" id="4153" name="IT_4153" size="75" />
+					<input type="text" id="4153" name="IT_4153" size="5" />
 				</label>
 							
 				<br />
 				
 				<label>Please Enter your grade for IT 3883:
-					<input type="text" id="3883" name="IT_3883" size="30" />
+					<input type="text" id="3883" name="IT_3883" size="5" />
 				</label>
 							
 				<br />
 				
 				<label>Please Enter your grade for IT 4323:
-					<input type="text" id="4323" name="IT_4323" size="30" />
+					<input type="text" id="4323" name="IT_4323" size="5" />
 				</label>
 							
 				<br />
 				
 				<p>
-					<input type="submit" value="Submit" />
+					<input type="submit" value="Submit" onclick="calculateGPA()"/>
 					<input type="reset" value="Clear form" />
 				</p>
 			</form>
